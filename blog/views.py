@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def add_comment(request, article_slug):
@@ -6,7 +7,7 @@ def add_comment(request, article_slug):
 
 
 def show_blog(request):
-    return HttpResponse("Now you're looking at the future blog.")
+    return render(request, 'base.html')
 
 
 def show_about(request):
@@ -14,11 +15,13 @@ def show_about(request):
 
 
 def show_article(request, article_slug):
-    return HttpResponse(f"Look at this article with slug '{article_slug}'.")
+    return render(request, 'single_article.html', {
+        'article_slug': article_slug,
+    })
 
 
 def create_article(request):
-    return HttpResponse("It's time to create a new great article. Let your imagination go wild!")
+    return render(request, 'create_article.html')
 
 
 def update_article(request, article_slug):
@@ -39,12 +42,12 @@ def change_password(request):
 
 
 def register(request):
-    return HttpResponse("Welcome aboard! Please, fill in the register form.")
+    return render(request, 'register.html')
 
 
 def login(request):
-    return HttpResponse("Already registered? Fill in the login form.")
+    return render(request, 'login.html')
 
 
 def logout(request):
-    return HttpResponse("Already leaving? Hope to see you again soon.")
+    return render(request, 'logout.html')
